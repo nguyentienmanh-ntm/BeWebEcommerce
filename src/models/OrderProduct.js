@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose')
 
 const orderSchema = new mongoose.Schema({
     orderItems: [
@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema({
         fullName: { type: String, required: true },
         address: { type: String, required: true },
         city: { type: String, required: true },
-        phone: { type: Number, required: true },
+        phone: { type: number, required: true },
     },
     paymentMethod: { type: String, required: true },
     itemsPrice: { type: Number, required: true },
@@ -31,10 +31,9 @@ const orderSchema = new mongoose.Schema({
     isDelivered: { type: Boolean, default: false },
     deliveredAt: { type: Date },
 },
-{
-    timestamps: true,
-});
-
+    {
+        timestamps: true,
+    }
+);
 const Order = mongoose.model('Order', orderSchema);
-
-export default Order;
+module.exports = Order
