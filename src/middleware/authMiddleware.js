@@ -11,7 +11,6 @@ const authMiddleWare = (req, res, next) => {
                 status: 'ERROR'
             })
         }
-        console.log('token', token)
         if (user?.isAdmin) {
             next()
         } else {
