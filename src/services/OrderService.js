@@ -59,7 +59,7 @@ const createOrder = (newOrder) => {
                     isPaid, paidAt
                 })
                 if (createdOrder) {
-                    await EmailService.sendEmailCreateOrder(email,orderItems)
+                    // await EmailService.sendEmailCreateOrder(email,orderItems)
                     resolve({
                         status: 'OK',
                         message: 'success'
@@ -72,6 +72,9 @@ const createOrder = (newOrder) => {
         }
     })
 }
+
+
+
 
 // const deleteManyProduct = (ids) => {
 //     return new Promise(async (resolve, reject) => {
@@ -86,6 +89,21 @@ const createOrder = (newOrder) => {
 //         }
 //     })
 // }
+
+const deleteManyOrder = (ids) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            await Order.deleteMany({ _id: ids })
+            resolve({
+                status: 'OK',
+                message: 'Delete Order success',
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 
 const getAllOrderDetails = (id) => {
     return new Promise(async (resolve, reject) => {
@@ -209,5 +227,6 @@ module.exports = {
     getAllOrderDetails,
     getOrderDetails,
     cancelOrderDetails,
-    getAllOrder
+    getAllOrder,
+    deleteManyOrder
 }
